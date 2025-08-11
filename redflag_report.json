@@ -1,0 +1,45 @@
+{
+  "summary": "The company registration submission exhibits significant non-compliance issues related to jurisdiction adherence, document completeness, clarity of legal language, and formatting. Key deficiencies include a stated preference for non-ADGM jurisdiction, ambiguous company activity descriptions, missing critical clauses (e.g., AML, data protection), and incomplete or improperly formatted signatory and resolution sections. These issues would likely prevent successful registration without comprehensive rectification.",
+  "red_flags": [
+    {
+      "issue": "The company explicitly states an agreement to be governed by the laws of the UAE Federal Courts rather than ADGM regulations.",
+      "law_reference": "Companies Regulations (Amendment No. 1) 2024, 2(2) and Companies Regulations (Amendment No. 2) 2024, 2(2), which state: 'These Regulations shall apply in the Abu Dhabi Global Market.'",
+      "snippet": "The company agrees to be governed by the laws of the UAE Federal Courts rather than ADGM regulations."
+    },
+    {
+      "issue": "The memorandum of association contains ambiguous language regarding company activities, stating 'The company may, at its discretion, engage in any activities it deems fit.'",
+      "law_reference": "Paragraph (3)(e)(a)(ii), which states the Registrar shall have regard to 'the company’s governance, policies and procedures.' Overly broad clauses contradict the requirement for defined activities in a regulated environment.",
+      "snippet": "The memorandum of association includes ambiguous language such as: “The company may, at its discretion, engage in any activities it deems fit.”"
+    },
+    {
+      "issue": "The signatory section is incomplete, lacking a designated Authorized Signatory, contact details, or signature.",
+      "law_reference": "Implicit requirement for all official regulatory submissions. Section 296B(2A) refers to the company service provider making filings, implying proper execution and authorization of documents.",
+      "snippet": "The signatory section is incomplete — no designated Authorized Signatory with contact details or signature is present."
+    },
+    {
+      "issue": "The document formatting does not follow the ADGM template for resolutions and certifications.",
+      "law_reference": "Paragraph (3)(e)(b), which states the Registrar 'may require such further information and supporting documentation as it considers appropriate.' Adherence to templates is generally considered appropriate for proper submission.",
+      "snippet": "The document formatting does not follow the ADGM template for resolutions and certifications."
+    },
+    {
+      "issue": "Several crucial clauses are missing, specifically those related to Anti-Money Laundering (AML) compliance and data protection responsibilities.",
+      "law_reference": "Section 296B(1)(b) and (c) refer to 'the Commercial Licensing Regulations 2015 (Conditions of Licence and Branch Registration) Rules 2021' and 'the Beneficial Ownership and Control Regulations 2018,' which inherently include requirements for AML/CTF and beneficial ownership. Paragraph (3)(e)(a)(ii) also refers to the company’s 'governance, policies and procedures.'",
+      "snippet": "Several crucial clauses are missing, including those related to Anti-Money Laundering (AML) compliance and data protection responsibilities."
+    },
+    {
+      "issue": "The resolution document lacks a proper date and has no formal signature section or witness attestation.",
+      "law_reference": "Section 296B(1)(a)(viii) refers to 'section 360 (records of resolutions etc).' For a resolution to be validly recorded and maintained, it must be properly dated and executed.",
+      "snippet": "The resolution document lacks a proper date and has no formal signature section or witness attestation."
+    },
+    {
+      "issue": "Reference to “applicable laws” is vague without specifying ADGM-specific legal frameworks.",
+      "law_reference": "The various Companies Regulations amendments consistently state 'These Regulations shall apply in the Abu Dhabi Global Market' (e.g., Companies Regulations (Amendment No. 1) 2024, 2(2)). Specificity regarding ADGM laws is essential for registration within the jurisdiction.",
+      "snippet": "Reference to “applicable laws” is vague without specifying ADGM-specific legal frameworks."
+    },
+    {
+      "issue": "The address mentioned for the registered office is outside the ADGM jurisdiction.",
+      "law_reference": "Section 296B(2)(a) states: 'A company service provider of a non-exempt company – (a) must act as a registered office provider to that company, unless a different registered office is otherwise expressly permitted by the Registrar.' This implies the registered office should be within ADGM unless a specific exception is granted.",
+      "snippet": "Address mentioned is outside the ADGM jurisdiction."
+    }
+  ]
+}
