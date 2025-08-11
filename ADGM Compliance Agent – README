@@ -1,0 +1,100 @@
+Hi! 
+This is my ADGM Compliance Agent project.
+It’s basically a small system I built which can take in a legal/corporate document from a user and check if it follows ADGM (Abu Dhabi Global Market) rules.
+Think of it like a mini‑compliance assistant — it looks for missing required documents, spots possible “red flags” in the text, and gives you an annotated version of your document highlighting the issues.
+
+I combined Streamlit (for a simple website interface) with Google Gemini AI, ChromaDB, and several Python libraries for document processing and web scraping.
+Here’s what each Python file does in super simple words with a bit about the tech it uses 
+
+1. app.py – The Main Web App
+This is the Streamlit UI.
+When you run it, it shows a webpage where you can upload your document (DOCX or PDF).
+Then it runs the backend process step-by-step:
+
+Uses Streamlit to build the web interface.
+
+Passes your uploaded file to different backend functions for processing.
+
+Shows a compliance summary and lets you download an annotated document with highlights.
+
+2. Step1.py – Document Classification
+This file looks at your document’s text and guesses the correct ADGM document type by matching it against a list I made in mapping_table.py.
+It uses Google Gemini’s chat AI model (gemini-1.5-flash) for classifying the document text.
+Also uses these Python libraries:
+
+python-docx to read DOCX files.
+
+difflib for fuzzy matching classification output to known types.
+
+requests and BeautifulSoup for web scraping (though scraping output is ignored in the Streamlit flow).
+
+3. missing_docs_check.py – Missing Documents Finder
+This script compares your uploaded document to an official checklist for the identified document type.
+It uses Google Gemini chat (gemini-2.5-flash) to compare checklist text and your document text, and generates a list of missing required documents/items.
+Libraries & tools used:
+
+python-docx and PyMuPDF (fitz) to extract text from DOCX and PDF documents.
+
+dotenv to load the API key from .env files.
+
+Uses environment variable GEMINI_API_KEY to authenticate the LLM calls.
+
+4. ingest_adm.py – Building the ADGM Rules Database
+This script scrapes the official ADGM rulebook (from Thomson Reuters site).
+It extracts the whole text, breaks it into smaller chunks, and creates vector embeddings for those chunks using Google Gemini's embedding model (text-embedding-004).
+These embeddings are saved into a ChromaDB persistent vector database locally. This helps other scripts quickly search relevant regulation chunks.
+Tech & libs used:
+
+requests, BeautifulSoup for scraping.
+
+chromadb Python SDK for vector DB.
+
+Custom embedding function wrapping Gemini API.
+
+dotenv for API keys.
+
+5. red_flag_check.py – Red Flag Detector
+Using your uploaded document, this script:
+
+Extracts its text (DOCX/PDF).
+
+Uses ChromaDB to find the top relevant ADGM rule chunks from the vector DB (based on embeddings).
+
+Sends those along with your document text to Google Gemini chat (gemini-2.5-flash) to detect compliance “red flags” like missing clauses, vague language, wrong jurisdiction, missing signatures, etc.
+
+Saves a detailed JSON report and a TSV file with snippets for annotation next.
+Libraries:
+
+python-docx, PyMuPDF for text extraction.
+
+chromadb for vector similarity search.
+
+google-genai for Gemini API calls.
+
+dotenv for keys.
+
+6. comment_adder.py – Adding Comments to Your Document
+This script takes your original document and the TSV snippets from the red flag detector.
+It scans through the document, highlights problem areas in yellow, and adds comment paragraphs explaining the issues found.
+If it can’t find the exact snippet in the doc, it adds those comments at the end under “unplaced comments.”
+Tech used:
+
+python-docx for reading and modifying Word documents.
+
+7. mapping_table.py – The Reference List
+A Python dictionary mapping document type names (like "Branch Registration Checklist") to official ADGM template or checklist URLs and file paths.
+Used in classification and missing docs steps to know which checklist applies.
+
+How it all works together
+In simple order:
+
+text
+Upload document → Classify type → Find missing docs → Load rules → Spot red flags → Add comments → Summarise & Download
+All AI steps are powered by Google Gemini LLM (chat and embedding models). The rules search is done with ChromaDB vector database.
+The user experience is just drag‑and‑drop a file, wait a bit, and download the reviewed version with issues clearly marked.
+
+Note from me 
+This project was built in a short amount of time, so there may be some errors or not‑so‑accurate outputs.
+I’m still learning, and if I had more time, I would refine the logic, make the AI prompts smarter, and handle edge cases better.
+Given the chance, I’m 100% ready to learn more and do better! 
+
